@@ -19,7 +19,7 @@ const authTokenWare = (req,res,next)=>{
             return res.json({ message:"Invalid/Expired Token", status:false })
         }
 
-        // If All The Condition Are Resolve The
+        // If All The Condition Are Resolve
         req.user = userToken.user
         next()
     }

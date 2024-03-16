@@ -157,28 +157,9 @@ function EditVehicle() {
       setIsErrorMsg(true);
       setEditValidation(false);
     }
-
-    // Check All The Correct Inputs
-    if (
-      editInputes.ownerNameEdit.length >= 5 &&
-      editInputes.ownerContactEdit.toString().length === 10 &&
-      editInputes.vehicleTypeEdit.length >= 5 &&
-      editInputes.bufferImgsEdit.length > 0
-    ) {
-      setEditValidation(true);
-      setIsErrorMsg(false);
-      setEditOwnerNameError("")
-      setEditOwnerContactError("")
-      setEditVehicleTypeError("")
-      setEditBufferImgsError("")
-    } 
-    else {
-      setIsErrorMsg(true);
-      setEditValidation(false);
-    }
-
   };
 
+  // Check The All The Input Are Valid Or Not
   useEffect(()=>{
     if (
       editInputes.ownerNameEdit.length >= 5 &&
@@ -192,14 +173,17 @@ function EditVehicle() {
       setEditOwnerContactError("")
       setEditVehicleTypeError("")
       setEditBufferImgsError("")
-    } 
+    }
+    else {
+      setEditValidation(false);
+    }
   },[editInputes])
 
   // This Function Is Call When User Submit Thier Updates Data
   const handleSubmit = (event) => {
     event.preventDefault();
     editValidationFunction()
-    if (editValidation) {
+    if (editValidation && !(isErrorMsg)) {
       updateDatas(editInputes, id);
     } else {
       setTimeout(() => {
@@ -230,6 +214,7 @@ function EditVehicle() {
   function handleToggle(event) {
     event.preventDefault();
     setEditInputes({ ...editInputes, bufferImgsEdit: "" });
+    setEditValidation(false)
     setToggle(false);
   }
 

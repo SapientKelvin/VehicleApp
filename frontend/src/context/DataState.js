@@ -121,7 +121,9 @@ function DataState(props) {
       allData = [...lists, addedData.vehicleData]
       setLists(allData)
       toast.success("Successfully Add", toastOptions)
-      navigate("/")
+      setTimeout(()=>{
+        navigate("/")
+      },1000)
     }
     else{
       allData = [...lists]
@@ -183,8 +185,8 @@ function DataState(props) {
         }
       }
       setLists(preDatas)
-      toast.success("Successfully Update", toastOptions)
       navigate("/")
+      toast.success("Successfully Update", toastOptions)
     }
     else{
       toast.error(updatedData.message, toastOptions)

@@ -34,15 +34,15 @@ function AddVehicle() {
   });
 
   // This Is Invalid Method For Show Error
-  const [fieldError, setFieldError] = useState({
-    modelYearError: "Please Enter Year Between 1900 To 2100",
-    vehicleNumberError: "Please Enter Valid Vehicle Number",
-    ownerNameError: "Please Enter Name At Least 5 Character",
-    ownerContactError: "Please Enter Valid Contact Number",
-    ownerLicenseError: "Please Enter Valid License Number",
-    vehicleTypeError: "Please Select Vehicle type",
-    bufferImgsError: "Please Enter Your Vehicle Image",
-  });
+  // const [fieldError, setFieldError] = useState({
+  //   modelYearError: "Please Enter Year Between 1900 To 2100",
+  //   vehicleNumberError: "Please Enter Valid Vehicle Number",
+  //   ownerNameError: "Please Enter Name At Least 5 Character",
+  //   ownerContactError: "Please Enter Valid Contact Number",
+  //   ownerLicenseError: "Please Enter Valid License Number",
+  //   vehicleTypeError: "Please Select Vehicle type",
+  //   bufferImgsError: "Please Enter Your Vehicle Image",
+  // });
 
   // This Valid Method For Show Error
   // We Needs Make Each And All Perticuler State For The Error State For Each Input Fields On Our Form
@@ -88,6 +88,7 @@ function AddVehicle() {
       };
     } else {
       setInputes({ ...inputes, bufferImgs: "" });
+      setBufferImgsError("Please Enter Your Vehicle Image")
     }
   }
 
@@ -133,7 +134,6 @@ function AddVehicle() {
     }
     if (inputes.ownerName.length >= 5) {
       setOwnerNameError("");
-      console.log("owner name is valid", ownerNameError);
     }
     if (inputes.ownerContact.length === 10) {
       setOwnerContactError("");
@@ -187,33 +187,6 @@ function AddVehicle() {
       setIsErrorMsg(true);
       setValidation(false);
     }
-
-    // Check All The Correct Inputs
-    if (
-      inputes.modelYear.length === 4 &&
-      inputes.modelYear >= 1900 &&
-      inputes.modelYear <= 2100 &&
-      inputes.vehicleNumber.length === 10 &&
-      validateVehicleNumber &&
-      inputes.ownerName.length >= 5 &&
-      inputes.ownerContact.length === 10 &&
-      inputes.ownerLicense.length === 16 &&
-      inputes.vehicleType.length >= 5 &&
-      inputes.bufferImgs.length > 0
-    ) {
-      setValidation(true);
-      setIsErrorMsg(false);
-      setModelYearError("");
-      setVehicleNumberError("");
-      setOwnerNameError("");
-      setOwnerContactError("");
-      setOwnerLicenseError("");
-      setVehicleTypeError("");
-      setBufferImgsError("");
-    } else {
-      setValidation(false);
-      setIsErrorMsg(true);
-    }
   };
 
   useEffect(() => {
@@ -241,6 +214,9 @@ function AddVehicle() {
       setOwnerLicenseError("");
       setVehicleTypeError("");
       setBufferImgsError("");
+    }
+    else{
+      setValidation(false)
     }
   }, [inputes]);
 
@@ -377,8 +353,7 @@ function AddVehicle() {
               id={`${mode ? "fileUpload" : "fileUploadDarkMode"}`}
               onChange={handleGetFile}
             />
-            {inputes.vehicleType.length <= 0 &&
-            isErrorMsg &&
+            {isErrorMsg &&
             bufferImgsError.length > 0 ? (
               <p className="text-red-600 font-normal">{bufferImgsError}</p>
             ) : null}
@@ -387,7 +362,7 @@ function AddVehicle() {
             <button
               className={`subBtn w-full p-2 ${
                 mode ? "text-white bg-gray-800" : "text-gray-800 bg-white"
-              } rounded-md inline-block text-lg font-semibold`}
+              } ${!validation ? "hover:text-white hover:bg-red-600" : "hover:text-white hover:bg-[rgb(53,184,84)]" } rounded-md inline-block text-lg font-semibold`}
               type="button"
               onClick={handleSubmit}
             >

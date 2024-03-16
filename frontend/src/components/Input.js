@@ -36,7 +36,7 @@ function Input(props) {
           </div>
           <div className="inputeFields">
             <input
-              className={`p-2 lg:p-2 bg-transparent w-full ${name === "modelYearEdit" ? "text-green-400 font-bold border-green-400" : ""} ${(isErrorMsg && fieldErrorMsg?.length > 0) || outlineError ? "border-2 border-red-600" : "border-2"} rounded`}
+              className={`p-2 lg:p-2 bg-transparent w-full ${name === "modelYearEdit" ? "text-[rgb(53,184,84)] font-bold border-[rgb(53,184,84)]" : ""} ${(isErrorMsg && fieldErrorMsg?.length > 0) || outlineError ? "border-2 border-red-600" : "border-2"} rounded`}
               autoComplete="off"
               disabled={name==="modelYearEdit" ? true : false}
               value={value}
@@ -61,7 +61,7 @@ function Input(props) {
           </div>
           <div className="inputeFields">
             <input
-              className={`p-2 lg:p-2 bg-transparent w-full ${name === "vehicleNumberEdit" || name === "ownerLicenseEdit" ? "text-green-400 font-bold border-green-400" : ""} ${(isErrorMsg && fieldErrorMsg?.length > 0) || outlineError ? "border-red-600" : "border-2"} rounded`}
+              className={`p-2 lg:p-2 bg-transparent w-full ${name === "vehicleNumberEdit" || name === "ownerLicenseEdit" ? "text-[rgb(53,184,84)] font-bold border-[rgb(53,184,84)]" : ""} ${(isErrorMsg && fieldErrorMsg?.length > 0) || outlineError ? "border-red-600" : "border-2"} rounded`}
               autoComplete="off"
               disabled={name === "vehicleNumberEdit" || name === "ownerLicenseEdit" ? true : false}
               value={value}

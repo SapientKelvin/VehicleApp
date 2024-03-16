@@ -1,4 +1,4 @@
-import React,{ useState, useContext } from 'react'
+import React,{ useState, useEffect ,useContext } from 'react'
 import {useNavigate} from "react-router-dom"
 import {Formik} from "formik"
 import Context from "../context/createContext"
@@ -20,6 +20,12 @@ function SignUp() {
       draggable:true,
       theme:"dark"
     }
+
+    useEffect(()=>{
+      if(JSON.parse(localStorage.getItem("authToken"))){
+        navigate("/")
+      }
+    },[])
 
     async function handleSubmitSignUp(values, actions){
       try{

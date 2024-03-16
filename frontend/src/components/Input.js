@@ -36,8 +36,9 @@ function Input(props) {
           </div>
           <div className="inputeFields">
             <input
-              className={`p-2 lg:p-2 bg-transparent w-full ${(isErrorMsg && fieldErrorMsg.length > 0) || outlineError ? "border-2 border-red-600" : "border-2"} rounded`}
+              className={`p-2 lg:p-2 bg-transparent w-full ${name === "modelYearEdit" ? "text-green-400 font-bold border-green-400" : ""} ${(isErrorMsg && fieldErrorMsg?.length > 0) || outlineError ? "border-2 border-red-600" : "border-2"} rounded`}
               autoComplete="off"
+              disabled={name==="modelYearEdit" ? true : false}
               value={value}
               min={min}
               max={max}
@@ -45,9 +46,9 @@ function Input(props) {
               name={name}
               type={type}
               placeholder={placeholder}
-              onChange={handleInputesChange}
+              onChange={name === "modelYearEdit" ? ()=>{} : handleInputesChange}
             />
-            {isErrorMsg && fieldErrorMsg.length > 0 ? <p className="text-red-600 font-normal">{fieldErrorMsg}</p> : null}
+            {isErrorMsg && fieldErrorMsg?.length > 0 ? <p className="text-red-600 font-normal">{fieldErrorMsg}</p> : null}
             {outlineError && <p className="text-red-600 font-normal">Please Enter The Valid Values</p>}
           </div>
         </div>
@@ -60,17 +61,18 @@ function Input(props) {
           </div>
           <div className="inputeFields">
             <input
-              className={`p-2 lg:p-2 bg-transparent w-full ${(isErrorMsg && fieldErrorMsg.length > 0) || outlineError ? "border-red-600" : "border-2"} rounded`}
+              className={`p-2 lg:p-2 bg-transparent w-full ${name === "vehicleNumberEdit" || name === "ownerLicenseEdit" ? "text-green-400 font-bold border-green-400" : ""} ${(isErrorMsg && fieldErrorMsg?.length > 0) || outlineError ? "border-red-600" : "border-2"} rounded`}
               autoComplete="off"
+              disabled={name === "vehicleNumberEdit" || name === "ownerLicenseEdit" ? true : false}
               value={value}
               id={name}
               name={name}
               type={type}
               placeholder={placeholder}
-              onChange={handleInputesChange}
-              onBlur={handleTouched}
+              onChange={name === "vehicleNumberEdit" || name === "ownerLicenseEdit" ? ()=>{} : handleInputesChange}
+              onBlur={name === "vehicleNumberEdit" || name === "ownerLicenseEdit" ? ()=>{} : handleTouched}
             />
-            {isErrorMsg && fieldErrorMsg.length > 0 ? <p className="text-red-600 font-normal">{fieldErrorMsg}</p> : null}
+            {isErrorMsg && fieldErrorMsg?.length > 0 ? <p className="text-red-600 font-normal">{fieldErrorMsg}</p> : null}
             {outlineError && <p className="text-red-600 font-normal">Please Enter Valid {lableText}</p>}
           </div>
         </div>

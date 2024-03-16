@@ -29,7 +29,7 @@ const mailOTP = async (req, res, next) => {
     const userEmail = await User.findOne({ email: email });
     // If User Is Not Register Means Not LoggedIn
     if (!userEmail) {
-      return res.status(404).json({ message: "User Not Exists", status: false });
+      return res.status(404).json({ message: "User Is Not Exists", status: false });
     }
 
     // Find Already Exists Email And Delete Thier Data From DataBase 

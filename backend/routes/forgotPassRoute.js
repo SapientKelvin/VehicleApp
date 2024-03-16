@@ -1,5 +1,6 @@
 const express = require("express")
 const {mailOTP, verifyOTP, resetOTP} = require("../controller/forgotPass")
+// For Validation
 const {validateForgotEmail, validateVerifyOtp, validateResetOtp} = require("../validation/validationController/validateForgotPass")
 
 const router = express.Router()

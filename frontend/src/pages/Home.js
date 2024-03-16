@@ -2,6 +2,8 @@ import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import Context from "../context/createContext";
+import {ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
 function Home() {
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ function Home() {
                   className={`cards col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 sm:mx-2 my-4 xl:my-2 pb-4 border-[1.5px] ${
                     mode ? "border border-gray-800" : "border border-white"
                   } rounded-sm`}
-                  key={list.ownerName}
+                  key={list._id}
                 >
                   <Card
                     list={list}
@@ -50,6 +52,7 @@ function Home() {
           )}
         </div>
       </div>
+      <ToastContainer/>
     </>
   );
 }

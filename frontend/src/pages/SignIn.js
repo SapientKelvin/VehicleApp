@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect ,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import Context from "../context/createContext";
@@ -20,6 +20,12 @@ function SignIn() {
     draggable:true,
     theme:"dark"
   }
+
+  useEffect(()=>{
+    if(JSON.parse(localStorage.getItem("authToken"))){
+      navigate("/")
+    }
+  },[])
 
   const handleSubmitLogin = async (values, actions) => {
     try{

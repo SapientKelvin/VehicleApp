@@ -19,7 +19,7 @@ function Card(props) {
       { toggleRemoveData && <PopupAlert popUpMessage = {"Are You Sure You Wants To Delete This Products"} setToggleRemoveData={setToggleRemoveData} isRemove={true} isLogout={false} />}
       <div className="mainCard flex flex-col gap-1" style={mode ? {  color: "#1F2937",background: "#E0E0E0"} : {color: "white",background: "rgb(16,24,40)"}}>
         <div className="imgDiv">
-          <img src={list.bufferImgs ? `data:image/jpg;charset=utf-8;base64,${list.bufferImgs}` : "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg"} className="imgs object-cover h-[26vh] lg:h-[28vh] xl:h-[24vh] w-full rounded" alt="ImagesList"/>
+          <img src={list.vehicleImgs ? `data:image/jpg;charset=utf-8;base64,${list.vehicleImgs}` : "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg"} className="imgs object-cover h-[26vh] lg:h-[28vh] xl:h-[24vh] w-full rounded" alt="ImagesList"/>
         </div>
         <div className="ownerNameDiv py-2">
           <h4 className={`text-center text-base font-bold ${mode ? "text-gray-800" : "text-white" }`}>

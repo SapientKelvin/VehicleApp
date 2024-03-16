@@ -1,5 +1,6 @@
 const {forgotPassEmailValidationSchema, forgotPassVerifyValidationSchema, forgotPassResetValidationSchema} = require("../validationSchema")
 
+// This Is Middleware For mailOTP
 const validateForgotEmail = async (req,res,next)=>{
     try{
         const {error, value} =  await forgotPassEmailValidationSchema.validate(req.body)
@@ -16,6 +17,7 @@ const validateForgotEmail = async (req,res,next)=>{
     }
 }
 
+// This Is The Middleware For verifyOTP
 const validateVerifyOtp = async (req,res,next)=>{
     try{
         const {error, value} = await forgotPassVerifyValidationSchema.validate(req.body)
@@ -31,6 +33,7 @@ const validateVerifyOtp = async (req,res,next)=>{
     }
 }
 
+// This Is Middleware For resetOTP
 const validateResetOtp = async (req,res,next)=>{
     try{
         const {error, value} = await forgotPassResetValidationSchema.validate(req.body)

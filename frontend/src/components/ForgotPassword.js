@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import Context from "../context/createContext";
@@ -20,6 +20,12 @@ function ForgotPassword() {
     draggable:true,
     theme:"dark"
   }
+
+  useEffect(()=>{
+    if(JSON.parse(localStorage.getItem("authToken"))){
+      navigate("/")
+    }
+  },[])
 
   const handleForgotPassword = async (values, actions)=>{
     try{
@@ -79,7 +85,7 @@ function ForgotPassword() {
                     </div>
                     <div className="btn mt-4 flex justify-center items-center">
                       <button type="submit" className={`subBtn w-full md:w-96 p-2 ${ mode ? "text-white bg-gray-800" : "text-white bg-blue-800" } rounded-md inline-block text-lg text-center font-semibold`}>
-                        {isSubmitting ? "Sending OTP...." : "Submit Email"}
+                        {isSubmitting ? "Sending OTP ...." : "Submit Email"}
                       </button>
                     </div>
                     <div className="my-1 flex justify-center items-center">

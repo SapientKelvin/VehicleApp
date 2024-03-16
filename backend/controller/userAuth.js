@@ -51,12 +51,6 @@ const signUp = async (req, res, next) => {
     // If All Condition Is True Then We Will Get This Data
     res.json({ user: user, authToken: jwtToken, status: true });
   } catch (err) {
-    // res.json({
-    //   error: err,
-    //   data: "Server Error, User SingUp Failed",
-    //   status: false,
-    // });
-    // console.log("Error From Catch:",err)
     next(createError.InternalServerError("Internal Server Error"));
   }
 };
@@ -100,12 +94,6 @@ const signIn = async (req, res) => {
 
     res.json({ user: user, authToken: jwtToken, status: true });
   } catch (err) {
-    // res.json({
-    //   error: err,
-    //   data: "Server Error, User LogIn Failed",
-    //   status: false,
-    // });
-    // console.log("Error From Catch:",err)
     next(createError.InternalServerError("Internal Server Error"));
   }
 };
@@ -123,7 +111,6 @@ const getUser = async (req, res, next) => {
     }
     res.json({ user: user, status: true });
   } catch (err) {
-    // console.log("Error From Catch:",err)
     next(createError.InternalServerError("Internal Server Error"));
   }
 };

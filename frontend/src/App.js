@@ -15,8 +15,8 @@ import ResetPassword from './components/ResetPassword';
 function App() {
   return (
     <>
-      <DataState>
-        <BrowserRouter>
+      <BrowserRouter>
+        <DataState>
           <Navbar />
           <Routes>
             <Route exact path='/' element={<Home/>} />
@@ -29,8 +29,8 @@ function App() {
             <Route exact path={"/verifyotp"} element={<Verify />} />
             <Route exact path={"/resetpassword"} element={<ResetPassword />} />
           </Routes>
-        </BrowserRouter>
-      </DataState>
+        </DataState>
+      </BrowserRouter>
     </>
   );
 }

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Context from "../context/createContext";
 import { Buffer } from "buffer";
+import {ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
 function AddVehicle() {
 
@@ -22,7 +24,6 @@ function AddVehicle() {
 
   // Control Input Value Using State And All The Keys Of This State Object Is Same Of Input Name Attribute
   const [inputes, setInputes] = useState({
-    _id: `${Math.floor(Math.random() * 1000)}`,
     modelYear: `${new Date().getFullYear()}`,
     vehicleNumber: "",
     ownerName: "",
@@ -33,15 +34,15 @@ function AddVehicle() {
   });
 
   // This Is Invalid Method For Show Error
-  // const [fieldError, setFieldError] = useState({
-  //   modelYearError: "Please Enter Year Between 1900 To 2100",
-  //   vehicleNumberError: "Please Enter Valid Vehicle Number",
-  //   ownerNameError: "Please Enter Name At Least 5 Character",
-  //   ownerContactError: "Please Enter Valid Contact Number",
-  //   ownerLicenseError: "Please Enter Valid License Number",
-  //   vehicleTypeError: "Please Select Vehicle type",
-  //   bufferImgsError: "Please Enter Your Vehicle Image",
-  // });
+  const [fieldError, setFieldError] = useState({
+    modelYearError: "Please Enter Year Between 1900 To 2100",
+    vehicleNumberError: "Please Enter Valid Vehicle Number",
+    ownerNameError: "Please Enter Name At Least 5 Character",
+    ownerContactError: "Please Enter Valid Contact Number",
+    ownerLicenseError: "Please Enter Valid License Number",
+    vehicleTypeError: "Please Select Vehicle type",
+    bufferImgsError: "Please Enter Your Vehicle Image",
+  });
 
   // This Valid Method For Show Error
   // We Needs Make Each And All Perticuler State For The Error State For Each Input Fields On Our Form
@@ -66,24 +67,6 @@ function AddVehicle() {
   const [bufferImgsError, setBufferImgsError] = useState(
     "Please Enter Your Vehicle Image"
   );
-
-  useEffect(() => {
-    console.log("modelYearError : ", modelYearError);
-    console.log("vehicleNumberError : ", vehicleNumberError);
-    console.log("ownerNameError : ", ownerNameError);
-    console.log("ownerContactError : ", ownerContactError);
-    console.log("ownerLicenseError : ", ownerLicenseError);
-    console.log("vehicleTypeError : ", vehicleTypeError);
-    console.log("bufferImgsError : ", bufferImgsError);
-  }, [
-    modelYearError,
-    vehicleNumberError,
-    ownerNameError,
-    ownerContactError,
-    ownerLicenseError,
-    vehicleTypeError,
-    bufferImgsError,
-  ]);
 
   // This Is State Give A Boolean Values For Validation And This Is Also Use For handleSubmit OnClick Event
   const [validation, setValidation] = useState(false);
@@ -140,8 +123,8 @@ function AddVehicle() {
     // For Valid Case
     if (
       inputes.modelYear.length === 4 &&
-      inputes.modelYear > 1900 &&
-      inputes.modelYear < 2100
+      inputes.modelYear >= 1900 &&
+      inputes.modelYear <= 2100
     ) {
       setModelYearError("");
     }
@@ -168,7 +151,7 @@ function AddVehicle() {
     // For Invalid Case
     if (
       inputes.modelYear.length !== 4 ||
-      !(inputes.modelYear > 1900 && inputes.modelYear < 2100)
+      !(inputes.modelYear >= 1900 && inputes.modelYear <= 2100)
     ) {
       setModelYearError("Please Enter Year Between 1900 To 2100");
       setIsErrorMsg(true);
@@ -208,8 +191,8 @@ function AddVehicle() {
     // Check All The Correct Inputs
     if (
       inputes.modelYear.length === 4 &&
-      inputes.modelYear > 1900 &&
-      inputes.modelYear < 2100 &&
+      inputes.modelYear >= 1900 &&
+      inputes.modelYear <= 2100 &&
       inputes.vehicleNumber.length === 10 &&
       validateVehicleNumber &&
       inputes.ownerName.length >= 5 &&
@@ -239,8 +222,8 @@ function AddVehicle() {
     // Check All The Correct Inputs
     if (
       inputes.modelYear.length === 4 &&
-      inputes.modelYear > 1900 &&
-      inputes.modelYear < 2100 &&
+      inputes.modelYear >= 1900 &&
+      inputes.modelYear <= 2100 &&
       inputes.vehicleNumber.length === 10 &&
       validateVehicleNumber &&
       inputes.ownerName.length >= 5 &&
@@ -266,16 +249,6 @@ function AddVehicle() {
     validationFunction();
     if (validation) {
       AddAllData(inputes);
-      setInputes({
-        modelYear: "",
-        vehicleNumber: "",
-        ownerName: "",
-        ownerContact: "",
-        ownerLicense: "",
-        vehicleType: "",
-        bufferImgs: "",
-      });
-      navigate("/");
     } else {
       setTimeout(() => {
         setIsErrorMsg(false);
@@ -423,6 +396,7 @@ function AddVehicle() {
           </div>
         </div>
       </form>
+      <ToastContainer/>
     </div>
   );
 }
